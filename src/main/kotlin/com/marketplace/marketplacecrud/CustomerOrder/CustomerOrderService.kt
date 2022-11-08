@@ -12,6 +12,10 @@ class CustomerOrderService {
         return orders
     }
 
+    fun getOrderById(id: String): CustomerOrderModel {
+        return orders.filter { it.id == id }.first()
+    }
+
     fun createCustomerOrder(productList: List<ProductModel>) {
         val id = if (orders.isEmpty()) {
             1
@@ -24,7 +28,7 @@ class CustomerOrderService {
         orders.add(CustomerOrderModel(id, productList, totalPrice))
     }
 
-    fun removeCustomerOrder(id: String) {
+    fun deleteCustomerOrder(id: String) {
         orders.removeIf { it.id === id }
     }
 
